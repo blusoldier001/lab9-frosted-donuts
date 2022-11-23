@@ -1,0 +1,177 @@
+* {
+    margin: 0;
+    padding: 0;
+    color: orange;
+
+    font-family: 'Gotham Rounded', sans-serif;
+}
+
+html {
+    background-color: black;
+}
+
+::-webkit-scrollbar {
+    background-color: black;;
+}
+
+body {
+    margin-left: auto;
+    margin-right: auto;
+
+    width: 50%;
+    min-width: 550px;
+    max-width: 700px;
+}
+
+h1 {
+    padding: 20px;
+}
+
+input[type="checkbox"] {
+    /* Hide native checkbox */
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    margin: 0;
+
+    appearance: none;
+    background-color: #fff;
+    margin: 0;
+    font: inherit;
+    color: lime;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid lime;
+    border-radius: 0.15em;
+    display: grid;
+    place-content: center;
+  }
+  
+  input[type="checkbox"]::before {
+    content: "M";
+    transform: scale(0);
+    transition: 300ms transform ease-in-out;
+    box-shadow: inset 1em 1em lime;
+  }
+  
+  input[type="checkbox"]:checked::before {
+    transform: scale(1);
+  }
+
+label {
+    position: relative;
+    background-color: orange;
+    color: black;
+    padding: 5px;
+    top: 33px;
+    left: 10px;
+}
+
+input[type=text] {
+    margin: 10px;
+    padding: 6px;
+    width: 92%;
+    text-align: right;
+
+    background: rgb(255, 236, 219);
+    color: black;
+}
+
+.delete-button {
+  background: #ff8c88;
+  border: 1px solid #7d0400;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 16px;
+  min-height: 40px;
+  outline: 0;
+  padding: 12px 14px;
+  text-align: center;
+  text-rendering: geometricprecision;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+}
+
+.delete-button:hover,
+.delete-button:active {
+  background-color: rgb(185, 39, 39);
+  color: #FF4742;
+}
+
+.delete-button:active {
+  opacity: .5;
+}
+
+p {
+    width: 50%;
+    color: white
+}
+
+.incomplete {
+    background-color: rgb(255, 66, 45);
+}
+
+.complete {
+    background-color: rgb(19, 120, 19);
+}
+
+#todo-list {
+    max-height: 65vh;
+    overflow-y: scroll;
+    background-color: rgb(25, 25, 25);
+    border-radius: 5%;
+}
+
+#todo-list div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    
+    margin: 35px 10px;
+
+    padding: 20px;
+}
+
+#todo-creator-submit {
+    position: fixed;
+    bottom: 10vh;
+    background-image: linear-gradient(-180deg, #FF7E31, #E62C03);
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    outline: 0;
+    overflow: hidden;
+    padding: 0 20px;
+    pointer-events: auto;
+    text-align: center;
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+    white-space: nowrap;
+    width: 200px;
+    z-index: 1;
+    border: 0;
+    transition: box-shadow .2s;
+}
+
+#keywall {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+}

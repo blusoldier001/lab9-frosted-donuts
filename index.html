@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>The Best TODO App</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="style.css">
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <!--
+        <div id="keywall">
+            <input type="text" id="key-input" placeholder="Enter your API key">
+            <input type="button" id="key-submit" value="Submit">
+        </div>
+        -->
+        <h1>To - Do</h1>
+        <div id="todo-wrapper">
+            <div id="todo-list">
+                <!-- jquery display here -->
+            </div>
+            <form name="todo-creator" id="todo-creator">
+                <label for="todo-text">Write a Task...</label>
+                <input type="text" id="todo-text" name="todo-text" placeholder="New TODO">
+            </form>
+        </div>
+
+        <input type="button" id="todo-creator-submit" name="todo-creator-submit" value="New TODO">
+
+        <script src="script.js"></script>
+    </body>
+</html>
