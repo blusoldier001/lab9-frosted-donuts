@@ -1,0 +1,83 @@
+body{
+  margin:0px;
+  padding:0px;
+}
+
+
+#Title{
+  padding:20px;
+  border-bottom: 10px solid red;
+}
+
+#Title h1{
+  font-size:60px;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight:bold;
+}
+
+#Todo-Body{
+  margin-left:auto;
+  margin-right:auto;
+  margin-top: 50px;
+  border: 10px solid red;
+  padding: 5px;
+  width:500px;
+  height:auto;
+}
+
+#Todo-Submit{
+  margin-left:auto;
+  margin-right:auto;
+  padding:5px;
+  border: 5px solid blue;
+}
+
+.Todo-Item-Single{
+  margin-left:auto;
+  margin-right:auto;
+  margin-bottom:5px;
+  padding:5px;
+  border: 5px solid blue;
+}
+
+#Todo-Submit input[type="submit"]{
+  display:inline;
+}
+
+#Todo-Body p{
+  display:inline;
+  padding:5px;
+}
+
+button {
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight:bold;
+}
+
+.completedButton{
+  padding:5px;
+  background-color: rgb(98, 231, 91);
+}
+
+.incompleteButton{
+  padding:5px;
+  background-color: rgb(241, 12, 0);
+}
+
+#Todo-Body p{
+  font-family: Verdana, sans-serif;
+  color:black;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+form {
+  font-size: 20px;
+  font-weight: bold;
+  color:rgb(245, 239, 213);
+  font-family: Verdana, sans-serif;
+}
+
+input[type=text]:focus {
+  background-color: lightblue;
+}
