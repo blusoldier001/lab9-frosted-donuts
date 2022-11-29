@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-import './App.css';
+import './Todo.css';
 
-class App extends Component {
+class Todo extends Component {
   render() {
     return (
-      <div className="App">
-        <h1>Frosted Donuts To-Do App</h1>
-        <h3></h3>
-      </div>
+    <div className="task incomplete" value="cb2882d0-656c-11ed-87c6-710e77fd4cdb">
+        <input type="checkbox" value="cb2882d0-656c-11ed-87c6-710e77fd4cdb" />
+        <p>sleep</p>
+        <input type="button" class="delete-button" value="🗑️" id="cb2882d0-656c-11ed-87c6-710e77fd4cdb" />
+    </div>
     );
   }
 }
 
-export default App;
+export default Todo;

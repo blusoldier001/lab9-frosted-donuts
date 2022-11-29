@@ -1,0 +1,73 @@
+input[type="checkbox"] {
+    /* Hide native checkbox */
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    margin: 0;
+
+    appearance: none;
+    background-color: #fff;
+    margin: 0;
+    font: inherit;
+    color: lime;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid lime;
+    border-radius: 0.15em;
+    display: grid;
+    place-content: center;
+  }
+  
+  input[type="checkbox"]::before {
+    content: "M";
+    transform: scale(0);
+    transition: 300ms transform ease-in-out;
+    box-shadow: inset 1em 1em lime;
+  }
+  
+  input[type="checkbox"]:checked::before {
+    transform: scale(1);
+  }
+
+  .delete-button {
+    background: #ff8c88;
+    border: 1px solid #7d0400;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 16px;
+    min-height: 40px;
+    outline: 0;
+    padding: 12px 14px;
+    text-align: center;
+    text-rendering: geometricprecision;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+  }
+  
+  .delete-button:hover,
+  .delete-button:active {
+    background-color: rgb(185, 39, 39);
+    color: #FF4742;
+  }
+  
+  .delete-button:active {
+    opacity: .5;
+  }
+
+.incomplete {
+    background-color: rgb(255, 66, 45);
+}
+
+.complete {
+    background-color: rgb(19, 120, 19);
+}
