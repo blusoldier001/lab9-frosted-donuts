@@ -4,6 +4,15 @@ import Todo from './Todo';
 import NewTodo from './NewTodo';
 
 class App extends Component {
+  
+  constructor() {
+    super();
+
+    this.state = {
+      todos: []   // array of our todos
+    }
+  }
+
   render() {
     return (
       <div className="App">
