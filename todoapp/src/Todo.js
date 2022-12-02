@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import './Todo.css';
 
+/* Props:
+  - todo_id
+  - todo_text
+  - todo_status
+*/
+
 export default class Todo extends Component {
 
   constructor(props) {
@@ -13,8 +19,7 @@ export default class Todo extends Component {
 
   // Handler for toggling task completeness
   completeTodoHandler = _ => {
-    this.state.isComplete ? 
-    this.props.todo_status="incomplete" : this.props.todo_status="complete";
+    console.log("u toggle me!");
     this.setState({isComplete: !this.state.isComplete});
     
     // Make fetch request to PUT
@@ -28,12 +33,12 @@ export default class Todo extends Component {
 
   render() {
     return (
-    <div className={`task ${this.props.status}`} todoID={this.props.todo_id}>
-        <input type="checkbox" todoID={this.props.todo_id} onClick={completeTodoHandler}/>
+    <div className={`task ${this.props.todo_status}`} todo_id={this.props.todo_id}>
+        <input type="checkbox" todo_id={this.props.todo_id} onClick={this.completeTodoHandler}/>
         <p>
           {this.props.todo_text}
         </p>
-        <input type="button" class="delete-button" value="🗑️" todoID={this.props.todo_id} onClick={deleteTodoHandler}/>
+        <input type="button" className="delete-button" value="🗑️" todo_id={this.props.todo_id} onClick={this.deleteTodoHandler}/>
     </div>
     );
   }

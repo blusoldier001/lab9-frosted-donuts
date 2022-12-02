@@ -19,7 +19,7 @@ class App extends Component {
         <h1>To - Do</h1>
       <div id="todo-wrapper">
           <div id="todo-list">
-            <Todo />
+            <Todo todo_id="yadada" todo_text="sleep" todo_status="incomplete" />
           </div>
           <NewTodo />
       </div>
