@@ -16,15 +16,41 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {
+  componentDidMount() { // called whenever component is loaded into page
     
   }
 
-  onChange(event) {
+  onChange(event) { // called whenever the App component state changes TODO use this function to update view when state changes
 
   }
 
+  // Handler for deleting task
+  deleteTodoHandler = _ => { // move
+    console.log('deleting task...');
 
+    let del_id = this.props.todo_id;
+
+    fetch(endpoint+`/todos/${del_id}`, {
+        method: 'DELETE',
+        headers: {
+            'x-api-key': api_key
+        }
+    })
+    .then(res => {
+        let status = res['status'];
+        if (status == 200) {
+            console.log("successfully deleted");
+            renderList();
+        } else {
+            console.log("could not delete");
+            alert("Could not delete task!");
+        }
+        console.log(status);
+    })
+    .catch(err => console.error(err));
+  };
+
+  
 
   render() {
     return (

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import $ from 'jquery';
 import './Todo.css';
 
 /* Props:
@@ -23,13 +24,35 @@ export default class Todo extends Component {
     this.setState({isComplete: !this.state.isComplete});
     
     // Make fetch request to PUT
+    let completedBool = this.props.todo_status;
+
+    let chk_id = e.target.value;
+    let data = {};
+
+    if (completedBool == 'complete') {
+        // update with completed status
+        $(`#${this.props.todo_id}`).removeClass('incomplete').addClass('complete');
+        data['completed'] = true;
+    } else {
+        // update with incomplete status
+        data['completed'] = false;
+        $(`#${this.props.todo_id}`).removeClass('complete').addClass('incomplete');
+    }
+    fetch(endpoint+`/todos/${chk_id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': api_key,
+        },
+        body: JSON.stringify(data)
+    })
+    .then(res => {
+        console.log(res);
+    })
+    .catch(err => console.error(err));
   };
 
-  // Handler for deleting task
-  deleteTodoHandler = _ => {
-    console.log("u delete me!")
-    // Make fetch request to DELETE
-  };
+
 
   render() {
     return (
