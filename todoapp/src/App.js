@@ -3,6 +3,9 @@ import './App.css';
 import Todo from './Todo';
 import NewTodo from './NewTodo';
 
+// const endpoint = 'https://cse204.work';
+// const api_key = '5b832d-2a041d-104386-3307d2-acff66';
+
 class App extends Component {
   
   constructor() {
@@ -12,6 +15,16 @@ class App extends Component {
       todos: []   // array of our todos
     }
   }
+
+  componentDidMount() {
+    
+  }
+
+  onChange(event) {
+
+  }
+
+
 
   render() {
     return (
