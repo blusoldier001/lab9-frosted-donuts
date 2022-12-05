@@ -24,8 +24,40 @@ class App extends Component {
 
   }
 
+  // Handler for making task or something
+  createtodoHandler = _ => {
+    console.log('createtodoHandler called');
+    text
+    if (this.props.todo_text) {
+      console.log('creating task...');
+
+      let data = {
+          text: this.props.todo_text
+      };
+
+      fetch(endpoint+'/todos', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'x-api-key': api_key
+          },
+          body: JSON.stringify(data)
+      })
+      .then(res => res.json())
+      .then(data => {
+          console.log(data);
+          renderList();
+      })
+      .catch(err => console.error(err));
+    } 
+    else {
+      alert("Task cannot be empty!");
+    }
+  }
+
+
   // Handler for deleting task
-  deleteTodoHandler = _ => { // move
+  deleteTodoHandler = _ => {
     console.log('deleting task...');
 
     let del_id = this.props.todo_id;
