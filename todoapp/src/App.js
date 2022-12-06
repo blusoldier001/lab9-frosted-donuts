@@ -49,12 +49,13 @@ class App extends Component {
 
   // Handler for making task or something
   createtodoHandler = _ => {
+    //let api_key = '5b832d-2a041d-104386-3307d2-acff66';
     console.log('createtodoHandler called');
-    if (this.props.todo_text) {
+    if (this.state.newtodo_input) {
       console.log('creating task...');
 
       let data = {
-          text: this.props.todo_text
+          text: this.state.newtodo_input
       };
 
       fetch(endpoint+'/todos', {
@@ -65,9 +66,14 @@ class App extends Component {
           },
           body: JSON.stringify(data)
       })
-      .then(res => res.json())
-      .then(data => {
-          console.log(data);
+      .then(res => {
+        if (res['status'] === 200) {
+          // successful, add to state
+        }
+        else {
+          console.log("could not add");
+          alert("Could not add todo!");
+        }
       })
       .catch(err => console.error(err));
     } 
