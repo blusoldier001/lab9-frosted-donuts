@@ -50,7 +50,6 @@ class App extends Component {
   // Handler for making task or something
   createtodoHandler = _ => {
     console.log('createtodoHandler called');
-    text
     if (this.props.todo_text) {
       console.log('creating task...');
 
@@ -69,7 +68,6 @@ class App extends Component {
       .then(res => res.json())
       .then(data => {
           console.log(data);
-          renderList();
       })
       .catch(err => console.error(err));
     } 
@@ -79,10 +77,10 @@ class App extends Component {
   }
 
   // Handler for deleting task
-  deleteTodoHandler = _ => {
+  deleteTodoHandler = (e) => {
     console.log('deleting task...');
 
-    let del_id = this.props.todo_id;
+    let del_id = e.target.parentNode.id;
 
     fetch(endpoint+`/todos/${del_id}`, {
         method: 'DELETE',
@@ -92,9 +90,17 @@ class App extends Component {
     })
     .then(res => {
         let status = res['status'];
-        if (status == 200) {
+        if (status === 200) {
             console.log("successfully deleted");
-            renderList();
+            // Update app state
+            // eslint-disable-next-line
+            const remainingTodos = this.state.todos.filter((todo) => {
+              // Looping through all todos, if the id of the current todo DOES NOT equal the id of the todo we want to delete, keep it
+              if (todo.id !== del_id) {
+                return todo;
+              }
+            });
+            this.setState({ todos: remainingTodos });
         } else {
             console.log("could not delete");
             alert("Could not delete task!");
@@ -115,10 +121,10 @@ class App extends Component {
             {
               this.state.todos.map((todo) => 
                 <Todo 
-                  id={todo.id} 
                   todo_id={todo.id} 
                   todo_text={todo.text}
                   todo_status={todo.completed ? "complete" : "incomplete"}
+                  deleteTodoHandler={this.deleteTodoHandler}
                 />
               )
             }
