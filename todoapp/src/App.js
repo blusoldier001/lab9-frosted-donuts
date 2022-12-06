@@ -68,7 +68,15 @@ class App extends Component {
       })
       .then(res => {
         if (res['status'] === 200) {
+          console.log(res);
           // successful, add to state
+          console.log("Correctly added")
+          let newTodos = [...this.state.todos, res.json()];
+          console.log("New TODOs list")
+          console.log(newTodos);
+          this.setState({
+            todos: newTodos,
+          })
         }
         else {
           console.log("could not add");
@@ -135,9 +143,9 @@ class App extends Component {
               )
             }
           </div>
-          <NewTodo inputListener={this.inputListener} />
+          <NewTodo inputListener={this.inputListener} newTodo={this.createtodoHandler}/>
       </div>
-      <input type="button" id="todo-creator-submit" name="todo-creator-submit" value="New TODO" />
+      <input type="button" id="todo-creator-submit" name="todo-creator-submit" value="New TODO" onClick={this.createtodoHandler}/>
 
       <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
       <script src="script.js"></script>
