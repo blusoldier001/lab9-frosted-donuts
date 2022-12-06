@@ -12,18 +12,40 @@ class App extends Component {
     super();
 
     this.state = {
-      todos: []   // array of our todos
+      todos: [],   // array of our todos
+      newtodo_input: "",  // input string from NewTodo input
     }
-  }
-  
+  };
 
-  componentDidMount() { // called whenever component is loaded into page
-    
-  }
+  // (Native) Function called when App component mounted, use to initialize component data
+  componentDidMount() {
 
-  onChange(event) { // called whenever the App component state changes TODO use this function to update view when state changes
+    fetch(endpoint+'/todos', {
+      method: 'GET',
+      headers: {
+          'x-api-key': api_key
+      }
+    })
+    .then(res => res.json())
+    .then(data => {
+      // set 'todos' state
+      console.log("SETTING TODOS STATE");
+      this.setState({
+        todos: data
+      });
+      console.log("==== this.state.todos ====");
+      console.log(this.state.todos);
+    })
+    .catch(err => console.error(err));
+  };
 
-  }
+  // Listener on New TODO input to update App input state 
+  inputListener = (event) => {
+    this.setState({
+      newtodo_input: event.target.value  // set to input target value
+    });
+    console.log(this.state.newtodo_input);
+  };
 
   // Handler for making task or something
   createtodoHandler = _ => {
@@ -60,7 +82,6 @@ class App extends Component {
     }
   }
 
-
   // Handler for deleting task
   deleteTodoHandler = _ => {
     console.log('deleting task...');
@@ -95,9 +116,18 @@ class App extends Component {
         <h1>To - Do</h1>
       <div id="todo-wrapper">
           <div id="todo-list">
-            <Todo todo_id="yadada" todo_text="sleep" todo_status="incomplete" />
+            {
+              this.state.todos.map((todo) => 
+                <Todo 
+                  id={todo.id} 
+                  todo_id={todo.id} 
+                  todo_text={todo.text}
+                  todo_status={todo.completed ? "complete" : "incomplete"}
+                />
+              )
+            }
           </div>
-          <NewTodo />
+          <NewTodo inputListener={this.inputListener} />
       </div>
       <input type="button" id="todo-creator-submit" name="todo-creator-submit" value="New TODO" />
 
