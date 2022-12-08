@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Todo from './Todo';
 import NewTodo from './NewTodo';
+import $ from 'jquery';
 
 const endpoint = 'https://cse204.work';
 const api_key = '5b832d-2a041d-104386-3307d2-acff66';
@@ -48,9 +49,11 @@ class App extends Component {
   };
 
   // Handler for making task or something
-  createtodoHandler = _ => {
-    //let api_key = '5b832d-2a041d-104386-3307d2-acff66';
+  createtodoHandler = (e) => {
+    e.preventDefault();
     console.log('createtodoHandler called');
+    $('#todo-creator-text').val("");
+    this.setState({newtodo_input: ""})
     if (this.state.newtodo_input) {
       console.log('creating task...');
 
@@ -68,20 +71,23 @@ class App extends Component {
       })
       .then(res => {
         if (res['status'] === 200) {
-          console.log(res);
+          return res.json();
+        }
+        else {
+          console.log("Could not add todo");
+          alert("Could not add todo!");
+          return false;
+        }
+      })
+      .then(data => {
           // successful, add to state
-          console.log("Correctly added")
-          let newTodos = [...this.state.todos, res.json()];
+          console.log("Successfully added new todo")
+          let newTodos = [...this.state.todos, data];
           console.log("New TODOs list")
           console.log(newTodos);
           this.setState({
             todos: newTodos,
           })
-        }
-        else {
-          console.log("could not add");
-          alert("Could not add todo!");
-        }
       })
       .catch(err => console.error(err));
     } 
@@ -92,6 +98,7 @@ class App extends Component {
 
   // Handler for deleting task
   deleteTodoHandler = (e) => {
+    e.preventDefault();
     console.log('deleting task...');
 
     let del_id = e.target.parentNode.id;
@@ -124,6 +131,22 @@ class App extends Component {
     .catch(err => console.error(err));
   };
 
+
+  // Handler for sorting tasks
+  sortTodos = _ => {
+    console.log("Caleld sort dtododeosfosi");
+    this.setState({
+      todos: this.state.todos.sort((a,b) => {
+        if (a.text > b.text) {
+          return 1;
+        }
+        else if (a.text == b.text) {
+          return 0;
+        }
+        return -1;
+      })
+    })
+  }
   
 
   render() {
@@ -143,10 +166,10 @@ class App extends Component {
               )
             }
           </div>
-          <NewTodo inputListener={this.inputListener} newTodo={this.createtodoHandler}/>
+          <NewTodo inputListener={this.inputListener} newTodo={this.createtodoHandler} todoHandler={this.createtodoHandler}/>
       </div>
-      <input type="button" id="todo-creator-submit" name="todo-creator-submit" value="New TODO" onClick={this.createtodoHandler}/>
-
+      <button type="submit" id="todo-creator-submit" name="todo-creator-submit" onClick={this.createtodoHandler}>New TODO</button>
+      <button type="submit" id="todo-sort-submit" name="todo-sort-submit" onClick={this.sortTodos}>Sort A-Z</button>
       <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
       <script src="script.js"></script>
       </div>

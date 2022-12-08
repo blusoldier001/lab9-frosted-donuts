@@ -17,7 +17,7 @@ export default class Todo extends Component {
     super(props);
 
     this.state = {
-      completed: false,
+      completed: this.props.todo_status === "complete" ? true : false,
     }
   }
 
@@ -26,19 +26,22 @@ export default class Todo extends Component {
     console.log("u toggle me!");
     
     // Update frontend dynamically with jquery
-    let completedBool = this.props.todo_status;
+    let completedBool = this.state.completed;
+    console.log(completedBool);
 
     let chk_id = this.props.todo_id;
     let PUT_data = {};
 
-    if (completedBool === 'complete') {
+    if (completedBool == true) {
         // update with incomplete status
         $(`#${this.props.todo_id}`).removeClass('complete').addClass('incomplete');
         PUT_data['completed'] = false;
+        this.setState({completed: false});
     } else {
         // update with complete status
         $(`#${this.props.todo_id}`).removeClass('incomplete').addClass('complete');
         PUT_data['completed'] = true;
+        this.setState({completed: true});
     }
 
     // Make fetch request to PUT
@@ -60,6 +63,10 @@ export default class Todo extends Component {
 
 
   render() {
+    let checkbox = <input type="checkbox" todo_id={this.props.todo_id} onClick={this.completeTodoHandler}/>;
+    if (this.props.todo_status === "complete") {
+      checkbox = <input type="checkbox" todo_id={this.props.todo_id} onClick={this.completeTodoHandler} defaultChecked/>;
+    }
     return (
     <div 
       key={this.props.todo_id}
@@ -67,7 +74,7 @@ export default class Todo extends Component {
       className={`task ${this.props.todo_status}`}
       todo_id={this.props.todo_id}
     >
-      <input type="checkbox" todo_id={this.props.todo_id} onClick={this.completeTodoHandler}/>
+      {checkbox}
       <p>
         {this.props.todo_text}
       </p>
